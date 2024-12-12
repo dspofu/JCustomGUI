@@ -49,8 +49,8 @@ public class JLabelBuilder {
     return this;
   }
 
-  public JLabelBuilder position(int x, int y) {
-    label.setBounds(x, y, label.getWidth(), label.getHeight());
+  public JLabelBuilder location(int x, int y) {
+    label.setLocation(x, y);
     return this;
   }
 

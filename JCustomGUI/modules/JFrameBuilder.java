@@ -38,9 +38,13 @@ public class JFrameBuilder {
     return this;
   }
 
-  public JFrameBuilder position(int x, int y) {
-    if (DEFAULT_SIZE == false) frame.setBounds(x, y, 720, 550);
-    else frame.setBounds(x, y, frame.getWidth(), frame.getHeight());
+  public JFrameBuilder location(int x, int y) {
+    frame.setLocation(x, y);
+    return this;
+  }
+
+  public JFrameBuilder location() {
+    frame.setLocationRelativeTo(null);
     return this;
   }
 
@@ -48,7 +52,7 @@ public class JFrameBuilder {
     frame.setIconImage(new ImageIcon(System.getProperty("user.dir")+dir).getImage());
     return this;
   }
-  // frame.setHorizontalAlignment(SwingConstants.CENTER)
+
   public JFrame build() {
     if (DEFAULT_TITLE == false) frame.setTitle("Sem título");
     if (DEFAULT_SIZE == false) frame.setSize(720, 550);
