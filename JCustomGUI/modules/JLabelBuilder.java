@@ -21,7 +21,7 @@ public class JLabelBuilder {
   //     }
   //   };
   // }
-  public JLabelBuilder text(String text) {
+  public JLabelBuilder content(String text) {
     label.setText(text);
     return this;
   }

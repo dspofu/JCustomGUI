@@ -34,7 +34,7 @@ public class JFieldBuilder {
         //   };
         // }
         
-  public static class Text {
+  public static class Text  {
     private JTextField text = new JTextField();
     private static boolean DEFAULT_FONT = false;
 
@@ -61,7 +61,7 @@ public class JFieldBuilder {
     // }
 
     public JTextField build() {
-      if (DEFAULT_FONT == false) text.setFont(new Font(Font.SANS_SERIF, Font.BOLD, text.getHeight()));
+      if (DEFAULT_FONT == false) text.setFont(new Font(Font.SANS_SERIF, Font.BOLD, text.getHeight()/2));
       text.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, false));
       return text;
     }
