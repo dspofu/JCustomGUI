@@ -5,13 +5,12 @@ import java.awt.*;
 
 public class JFrameBuilder {
   private JFrame frame = new JFrame();
-  private static boolean DEFAULT_TITLE = false;
   private static boolean DEFAULT_SIZE = false;
+  private static boolean DEFAULT_RESIZABLE = false;
   private static boolean DEFAULT_OPERATION = false;
 
   public JFrameBuilder title(String title) {
     frame.setTitle(title);
-    DEFAULT_TITLE = true;
     return this;
   }
 
@@ -29,6 +28,7 @@ public class JFrameBuilder {
 
   public JFrameBuilder resizable(boolean resizable) {
     frame.setResizable(resizable);
+    DEFAULT_RESIZABLE = true;
     return this;
   }
 
@@ -54,9 +54,12 @@ public class JFrameBuilder {
   }
 
   public JFrame build() {
-    if (DEFAULT_TITLE == false) frame.setTitle("Sem título");
-    if (DEFAULT_SIZE == false) frame.setSize(720, 550);
+    if (DEFAULT_SIZE == false)
+      try {
+        throw new IllegalAccessException("The 'size' method was not called correctly!");
+      } catch (IllegalAccessException e) { e.printStackTrace(); }
     if (DEFAULT_OPERATION == false) frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setResizable(DEFAULT_RESIZABLE);
     frame.setLayout(null);
     return frame;
   }
