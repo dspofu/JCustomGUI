@@ -12,7 +12,7 @@
 > Tabela das propriedades e seus tipos
 
 |Method|Type|Usage|Default|Required|
-|-|-|-|-|-|
+|---|:---:|---|:---:|:---:|
 |__title__|string|"My Window title"|-|__[ x ]__|
 |__size__|int`x2`|(400, 200)|-|__[ ✓ ]__|
 |__background__|`Color`|(Color.GRAY)|white|__[ x ]__|
@@ -37,7 +37,7 @@ frame.setVisible(true); // Exibir a janela
 > Tabela das propriedades e seus tipos
 
 |Method|Type|Usage|Default|Required|
-|-|-|-|-|-|
+|---|:---:|---|:---:|:---:|
 |__title__|string|"My Window title"|-|__[ x ]__|
 |__size__|int`x2`|(400, 200)|-|__[ ✓ ]__|
 |__background__|`Color`|(Color.GRAY)|white|__[ x ]__|
