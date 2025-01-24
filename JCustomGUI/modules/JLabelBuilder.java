@@ -8,19 +8,7 @@ public class JLabelBuilder {
   private static boolean DEFAULT_FONT = false;
   private static boolean DEFAULT_BACKGROUND = false;
   private static boolean DEFAULT_FOREGROUND = false;
-  // private static JLabel labelEdit(int radius) {
-  //   return new JLabel() {
-  //     @Override
-  //     protected void paintComponent(Graphics g) {
-  //       Graphics2D g2 = (Graphics2D) g.create();
-  //       g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-  //       g2.setColor(getBackground());
-  //       g2.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius);
-  //       g2.dispose();
-  //       super.paintComponent(g);
-  //     }
-  //   };
-  // }
+
   public JLabelBuilder content(String text) {
     label.setText(text);
     return this;
@@ -43,11 +31,6 @@ public class JLabelBuilder {
     DEFAULT_FONT = true;
     return this;
   }
-  
-  public JLabelBuilder size(int width, int height) {
-    label.setSize(width, height);
-    return this;
-  }
 
   public JLabelBuilder location(int x, int y) {
     label.setLocation(x, y);
@@ -55,15 +38,41 @@ public class JLabelBuilder {
   }
 
   public JLabelBuilder image(String dir) {
-    ImageIcon image = new ImageIcon(new ImageIcon(dir).getImage().getScaledInstance(label.getWidth(), label.getHeight(),  java.awt.Image.SCALE_SMOOTH));
-    if (image.getImageLoadStatus() != MediaTracker.COMPLETE) { System.err.println("Failed in loading image."); }
+    ImageIcon image = new ImageIcon(new ImageIcon(dir).getImage().getScaledInstance(label.getWidth(), label.getHeight(), java.awt.Image.SCALE_SMOOTH));
+    if (image.getImageLoadStatus() != MediaTracker.COMPLETE) {
+      System.err.println("Failed in loading image.");
+    }
     return this;
   }
 
+  private void resizeFont() {
+    Font labelFont = label.getFont();
+    String labelText = label.getText();
+
+    if (labelText.isEmpty()) return;
+
+    int stringWidth = label.getFontMetrics(labelFont).stringWidth(labelText);
+    int componentWidth = label.getWidth();
+
+    if (componentWidth <= 0) componentWidth = stringWidth;
+
+    double widthRatio = (double) componentWidth / (double) stringWidth;
+    int newFontSize = (int) (labelFont.getSize() * widthRatio);
+    int componentHeight = label.getHeight();
+
+    if (componentHeight <= 0) componentHeight = newFontSize;
+
+    int fontSizeToUse = Math.min(newFontSize, componentHeight);
+    label.setFont(new Font(labelFont.getName(), Font.PLAIN, fontSizeToUse));
+  }
+
   public JLabel build() {
-    if (DEFAULT_BACKGROUND == false) label.setBackground(Color.WHITE);
-    if (DEFAULT_FOREGROUND == false) label.setForeground(Color.BLACK);
-    if (DEFAULT_FONT == false) label.setFont(new Font(Font.MONOSPACED, Font.BOLD, label.getHeight()));
+    if (!DEFAULT_BACKGROUND) label.setBackground(Color.WHITE);
+    if (!DEFAULT_FOREGROUND) label.setForeground(Color.BLACK);
+    if (!DEFAULT_FONT) label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
+
+    label.setSize(label.getPreferredSize()); // Garante que o JLabel tenha um tamanho adequado
+    resizeFont();
     return label;
   }
 }
