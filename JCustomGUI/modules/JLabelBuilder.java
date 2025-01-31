@@ -14,11 +14,11 @@ public class JLabelBuilder {
     return this;
   }
 
-  public JLabelBuilder background(Color color) {
-    label.setBackground(color);
-    DEFAULT_BACKGROUND = true;
-    return this;
-  }
+  // public JLabelBuilder background(Color color) {
+  //   label.setBackground(color);
+  //   DEFAULT_BACKGROUND = true;
+  //   return this;
+  // }
 
   public JLabelBuilder foreground(Color color) {
     label.setForeground(color);
@@ -39,31 +39,8 @@ public class JLabelBuilder {
 
   public JLabelBuilder image(String dir) {
     ImageIcon image = new ImageIcon(new ImageIcon(dir).getImage().getScaledInstance(label.getWidth(), label.getHeight(), java.awt.Image.SCALE_SMOOTH));
-    if (image.getImageLoadStatus() != MediaTracker.COMPLETE) {
-      System.err.println("Failed in loading image.");
-    }
+    if (image.getImageLoadStatus() != MediaTracker.COMPLETE) System.err.println("Failed in loading image.");
     return this;
-  }
-
-  private void resizeFont() {
-    Font labelFont = label.getFont();
-    String labelText = label.getText();
-
-    if (labelText.isEmpty()) return;
-
-    int stringWidth = label.getFontMetrics(labelFont).stringWidth(labelText);
-    int componentWidth = label.getWidth();
-
-    if (componentWidth <= 0) componentWidth = stringWidth;
-
-    double widthRatio = (double) componentWidth / (double) stringWidth;
-    int newFontSize = (int) (labelFont.getSize() * widthRatio);
-    int componentHeight = label.getHeight();
-
-    if (componentHeight <= 0) componentHeight = newFontSize;
-
-    int fontSizeToUse = Math.min(newFontSize, componentHeight);
-    label.setFont(new Font(labelFont.getName(), Font.PLAIN, fontSizeToUse));
   }
 
   public JLabel build() {
@@ -71,8 +48,7 @@ public class JLabelBuilder {
     if (!DEFAULT_FOREGROUND) label.setForeground(Color.BLACK);
     if (!DEFAULT_FONT) label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
 
-    label.setSize(label.getPreferredSize()); // Garante que o JLabel tenha um tamanho adequado
-    resizeFont();
+    label.setSize(label.getPreferredSize());
     return label;
   }
 }

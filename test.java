@@ -12,7 +12,8 @@ public class test extends Frame {
     JLabel text = new JLabelBuilder()
     .content("Login")
     .foreground(Color.GRAY)
-    .location(120, 5)
+    .font(new Font(Font.MONOSPACED, Font.BOLD, 30))
+    .location(150, 5)
     .build();
 
     JTextField inputName = new JFieldBuilder.Text()
