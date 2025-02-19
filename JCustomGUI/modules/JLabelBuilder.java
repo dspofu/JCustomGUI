@@ -51,7 +51,7 @@ public class JLabelBuilder {
     label.setSize(label.getPreferredSize());
 
     if (DEFAULT_BACKGROUND) {
-      JLabel original = label;
+      JLabel defaultLabel = label;
       label = new JLabel() {
         @Override
         protected void paintComponent(Graphics g) {
@@ -63,12 +63,12 @@ public class JLabelBuilder {
           super.paintComponent(g);
         }
       };
-      label.setText(original.getText());
-      label.setIcon(original.getIcon());
-      label.setFont(original.getFont());
-      label.setForeground(original.getForeground());
-      label.setBackground(original.getBackground());
-      label.setBounds(original.getBounds());
+      label.setText(defaultLabel.getText());
+      label.setIcon(defaultLabel.getIcon());
+      label.setFont(defaultLabel.getFont());
+      label.setForeground(defaultLabel.getForeground());
+      label.setBackground(defaultLabel.getBackground());
+      label.setBounds(defaultLabel.getBounds());
     }
 
     return label;

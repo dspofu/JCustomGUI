@@ -4,6 +4,8 @@ Manipulador das `classes` **jwa** e **Swing**.
 Objetivos:
 > Acelerar o processo de contrução de interfaces gráficas com o usa da classe personalizada `JCustom` e suas funcionalidades inclusas do `JCustomGUI.modules`
 
+### [- Guia completo dos metodos](JCustomGUI/README.md) 👈
+
 ## Estrutura base do `JCustomGUI`
 
 ```java
