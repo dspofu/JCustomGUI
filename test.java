@@ -13,6 +13,7 @@ public class test extends Frame {
     .content("Login")
     .foreground(Color.GRAY)
     .font(new Font(Font.MONOSPACED, Font.BOLD, 30))
+    .background(Color.BLACK, 10)
     .location(150, 5)
     .build();
 
