@@ -5,9 +5,9 @@ import java.awt.*;
 
 public class JFrameBuilder {
   private JFrame frame = new JFrame();
-  private static boolean DEFAULT_SIZE = false;
-  private static boolean DEFAULT_RESIZABLE = false;
-  private static boolean DEFAULT_OPERATION = false;
+  private boolean DEFAULT_SIZE = false;
+  private boolean DEFAULT_RESIZABLE = false;
+  private boolean DEFAULT_OPERATION = false;
 
   public JFrameBuilder title(String title) {
     frame.setTitle(title);

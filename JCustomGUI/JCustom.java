@@ -13,7 +13,7 @@ public class JCustom {
   public JCustomGUI.modules.JLabelBuilder JLabelBuilder() {
     return new JCustomGUI.modules.JLabelBuilder();
   }
-  public JCustomGUI.modules.JPanelCustom JPanelCustom() {
-    return new JCustomGUI.modules.JPanelCustom();
+  public JCustomGUI.modules.JPanelBuilder JPanelBuilder() {
+    return new JCustomGUI.modules.JPanelBuilder();
   }
 }

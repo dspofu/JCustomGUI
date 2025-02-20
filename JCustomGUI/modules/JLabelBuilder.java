@@ -5,28 +5,29 @@ import java.awt.*;
 
 public class JLabelBuilder {
   private JLabel label = new JLabel();
-  private static boolean DEFAULT_FONT = false;
-  private static boolean DEFAULT_BACKGROUND = false;
-  private static int BACKGROUND_RADIUS;
-  private static boolean DEFAULT_FOREGROUND = false;
+  private boolean DEFAULT_FONT = false;
+  private boolean DEFAULT_BACKGROUND = false;
+  private int DEFAULT_RADIUS;
+  private boolean DEFAULT_FOREGROUND = false;
+  private String text;
+  private int x;
+  private int y;
 
   public JLabelBuilder content(String text) {
     label.setText(text);
+    this.text=text;
     return this;
   }
 
   public JLabelBuilder background(Color color, Integer radius) {
-    BACKGROUND_RADIUS=(radius!=null && radius>0)?radius:10;
+    DEFAULT_RADIUS=(radius!=null && radius>=0)?radius:10;
     label.setBackground(color);
     DEFAULT_BACKGROUND = true;
     return this;
   }
 
   public JLabelBuilder background(Color color) {
-    BACKGROUND_RADIUS=10;
-    label.setBackground(color);
-    DEFAULT_BACKGROUND = true;
-    return this;
+    return background(color, 10);
   }
 
   public JLabelBuilder foreground(Color color) {
@@ -42,7 +43,8 @@ public class JLabelBuilder {
   }
 
   public JLabelBuilder location(int x, int y) {
-    label.setLocation(x, y);
+    this.x=x;
+    this.y=y;
     return this;
   }
 
@@ -57,6 +59,11 @@ public class JLabelBuilder {
     if (!DEFAULT_FONT) label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
     label.setSize(label.getPreferredSize());
 
+    if (!this.text.isEmpty() && this.x>=0 && this.y>=0) {
+      FontMetrics metrics = label.getFontMetrics(label.getFont());
+      label.setBounds(this.x, this.y, metrics.stringWidth(this.text), metrics.getHeight());
+    }
+
     if (DEFAULT_BACKGROUND) {
       JLabel defaultLabel = label;
       label = new JLabel() {
@@ -65,7 +72,7 @@ public class JLabelBuilder {
           Graphics2D g2 = (Graphics2D) g.create();
           g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
           g2.setColor(getBackground());
-          g2.fillRoundRect(0, 0, getWidth(), getHeight(), BACKGROUND_RADIUS, BACKGROUND_RADIUS);
+          g2.fillRoundRect(0, 0, getWidth(), getHeight(), DEFAULT_RADIUS, DEFAULT_RADIUS);
           g2.dispose();
           super.paintComponent(g);
         }
@@ -77,7 +84,6 @@ public class JLabelBuilder {
       label.setBackground(defaultLabel.getBackground());
       label.setBounds(defaultLabel.getBounds());
     }
-
     return label;
   }
 }

@@ -13,7 +13,7 @@ public class Test extends Frame {
     .content("Login")
     .foreground(Color.GRAY)
     .font(new Font(Font.MONOSPACED, Font.BOLD, 30))
-    .background(Color.BLACK, null)
+    .background(Color.BLACK, 10)
     .location(150, 5)
     .build();
 
@@ -25,6 +25,9 @@ public class Test extends Frame {
     JPasswordField inputPassword = new JFieldBuilder.Password()
     .size(200, 30)
     .location(100, 110)
+    .build();
+
+    JPanel panel = new JPanelBuilder()
     .build();
 
     frame.add(text);
