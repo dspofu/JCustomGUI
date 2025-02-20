@@ -16,7 +16,14 @@ public class JLabelBuilder {
   }
 
   public JLabelBuilder background(Color color, Integer radius) {
-    BACKGROUND_RADIUS=radius<0?10:radius;
+    BACKGROUND_RADIUS=(radius!=null && radius>0)?radius:10;
+    label.setBackground(color);
+    DEFAULT_BACKGROUND = true;
+    return this;
+  }
+
+  public JLabelBuilder background(Color color) {
+    BACKGROUND_RADIUS=10;
     label.setBackground(color);
     DEFAULT_BACKGROUND = true;
     return this;

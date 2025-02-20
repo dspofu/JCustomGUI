@@ -40,7 +40,7 @@ frame.setVisible(true); // Exibir a janela
 |Method|Type|Usage|Default|Required|
 |---|:---:|:---|:---:|:---:|
 |__content__|String|"Some text"|-|__[ x ]__|
-|__background__|`Color`, `Integer`|(Color.GRAY, 10)|-|__[ x ]__|
+|__background__|`Color`, `Integer` or `Color`|(Color.GRAY, 10) or (Color.GRAY)|10|__[ x ]__|
 |__foreground__|`Color`|(Color.GRAY)|gray|__[ x ]__|
 |__location__|int`x2`|(50, 50)|-|__[ ✓ ]__|
 |__font__|`Font`, int|new Font(Font.SERIF, Font.BOLD, 30)|SANS_SERIF, Font.BOLD, 20|__[ x ]__|

@@ -2,7 +2,7 @@ import JCustomGUI.modules.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class test extends Frame {
+public class Test extends Frame {
   public static void main(String[] args) {
     JFrame frame = new JFrameBuilder()
     .size(400, 600)
@@ -13,7 +13,7 @@ public class test extends Frame {
     .content("Login")
     .foreground(Color.GRAY)
     .font(new Font(Font.MONOSPACED, Font.BOLD, 30))
-    .background(Color.BLACK, 10)
+    .background(Color.BLACK, null)
     .location(150, 5)
     .build();
 
