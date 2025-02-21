@@ -2,10 +2,11 @@ import JCustomGUI.modules.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class Test extends Frame {
+public class Example extends Frame {
   public static void main(String[] args) {
     JFrame frame = new JFrameBuilder()
     .size(400, 600)
+    .background(Color.DARK_GRAY)
     .location()
     .build();
 
@@ -27,8 +28,9 @@ public class Test extends Frame {
     .location(100, 110)
     .build();
 
-    JPanel panel = new JPanelBuilder()
-    .build();
+
+    // JPanel panel = new JPanelBuilder()
+    // .build();
 
     frame.add(text);
     frame.add(inputName);
