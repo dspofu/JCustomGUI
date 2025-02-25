@@ -12,13 +12,15 @@ public class JPanelBuilder {
   private int y;
 
   // public JPanel 
-
-  public JPanelBuilder() {}
-
+  
   public JPanelBuilder(int borders) {
     this.DEFAULT_BORDER=borders>=0?borders:0;
   }
-
+  
+    public JPanelBuilder() {
+      new JPanelBuilder(4);
+    }
+  
   // public static JPanel JCustom(int x, int y, int width, int height, Color background) {
   //   JPanel component = new JPanel();
   //   component.setBounds(x, y, width, height);

@@ -6,7 +6,6 @@ public class Example extends Frame {
   public static void main(String[] args) {
     JFrame frame = new JFrameBuilder()
     .size(400, 600)
-    .background(Color.DARK_GRAY)
     .location()
     .build();
 
@@ -29,12 +28,13 @@ public class Example extends Frame {
     .build();
 
 
-    // JPanel panel = new JPanelBuilder()
-    // .build();
+    JPanel panel = new JPanelBuilder(4)
+    .build();
 
     frame.add(text);
     frame.add(inputName);
     frame.add(inputPassword);
+    frame.add(panel);
     frame.setVisible(true);
   }
 }
