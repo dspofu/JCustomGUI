@@ -34,7 +34,7 @@ public class JInputBuilder {
         //   };
         // }
         
-  public class Text  {
+  public static class Text  {
     private JTextField text = new JTextField();
     private static boolean DEFAULT_FONT = false;
 
@@ -61,7 +61,7 @@ public class JInputBuilder {
     }
   }
 
-  public class Password {
+  public static class Password {
     private JPasswordField password = new JPasswordField();
     private static boolean DEFAULT_FONT = false;
 
@@ -87,59 +87,58 @@ public class JInputBuilder {
       return password;
     }
   }
-  public class TextArea {
-    private JTextArea textArea = new JTextArea();
-    private static boolean DEFAULT_FONT = false;
-    private boolean DEFAULT_BACKGROUND = false;
-    private int DEFAULT_RADIUS;
-    private boolean DEFAULT_FOREGROUND = false;
-    private String placeholder;
+  // public class TextArea {
+  //   private JTextArea textArea = new JTextArea();
+  //   private static boolean DEFAULT_FONT = false;
+  //   private boolean DEFAULT_BACKGROUND = false;
+  //   private int DEFAULT_RADIUS;
+  //   private boolean DEFAULT_FOREGROUND = false;
+  //   private String placeholder;
 
-    // textArea.setEditable(false);
-    // textArea.setLineWrap(true);
-    // textArea.setWrapStyleWord(true);
-    // JScrollPane scrollPane = new JScrollPane(textArea);
-    // scrollPane.setBounds(40, 60, 720, 400);
-    // scrollPane.setBorder(new RoundedBorder(2, Color.decode("#979797"), 0));
+  //   // textArea.setEditable(false);
+  //   // textArea.setLineWrap(true);
+  //   // textArea.setWrapStyleWord(true);
+  //   // JScrollPane scrollPane = new JScrollPane(textArea);
+  //   // scrollPane.setBounds(40, 60, 720, 400);
+  //   // scrollPane.setBorder(new RoundedBorder(2, Color.decode("#979797"), 0));
 
-    public TextArea background(Color color, Integer radius) {
-      DEFAULT_RADIUS=(radius!=null && radius>=0)?radius:10;
-      textArea.setBackground(color);
-      DEFAULT_BACKGROUND = true;
-      return this;
-    }
+  //   public TextArea background(Color color, Integer radius) {
+  //     DEFAULT_RADIUS=(radius!=null && radius>=0)?radius:10;
+  //     textArea.setBackground(color);
+  //     DEFAULT_BACKGROUND = true;
+  //     return this;
+  //   }
 
-    public TextArea background(Color color) {
-      return background(color, 10);
-    }
+  //   public TextArea background(Color color) {
+  //     return background(color, 10);
+  //   }
 
-    public TextArea foreground(Color color) {
-      textArea.setForeground(color);
-      DEFAULT_FOREGROUND = true;
-      return this;
-    }
+  //   public TextArea foreground(Color color) {
+  //     textArea.setForeground(color);
+  //     DEFAULT_FOREGROUND = true;
+  //     return this;
+  //   }
 
-    public TextArea size(int width, int height) {
-      textArea.setSize(width, height);
-      return this;
-    }
+  //   public TextArea size(int width, int height) {
+  //     textArea.setSize(width, height);
+  //     return this;
+  //   }
 
-    public TextArea location(int x, int y) {
-      textArea.setLocation(x, y);
-      return this;
-    }
+  //   public TextArea location(int x, int y) {
+  //     textArea.setLocation(x, y);
+  //     return this;
+  //   }
 
-    public TextArea font(Font font) {
-      textArea.setFont(font);
-      DEFAULT_FONT = true;
-      return this;
-    }
+  //   public TextArea font(Font font) {
+  //     textArea.setFont(font);
+  //     DEFAULT_FONT = true;
+  //     return this;
+  //   }
 
-    public JTextArea build() {
-      if (DEFAULT_FONT == false) textArea.setFont(new Font(Font.SANS_SERIF, Font.BOLD, textArea.getHeight()));
-      textArea.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, false));
-      return textArea;
-    }
-    
-  }
+  //   public JTextArea build() {
+  //     if (DEFAULT_FONT == false) textArea.setFont(new Font(Font.SANS_SERIF, Font.BOLD, textArea.getHeight()));
+  //     textArea.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, false));
+  //     return textArea;
+  //   }
+  // }
 }

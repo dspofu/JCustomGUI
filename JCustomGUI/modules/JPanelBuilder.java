@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class JPanelBuilder {
   private JPanel panel = new JPanel();
-  private Color BACKGROUND = Color.GRAY;
+  private Color DEFAULT_BACKGROUND = Color.GRAY;
   private int DEFAULT_BORDER = 4;
   private int RADIUS;
   private int x;
