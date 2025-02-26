@@ -1,8 +1,8 @@
 package JCustomGUI;
 
 public class JCustom {
-  public JCustomGUI.modules.JFieldBuilder JFieldBuilder() {
-    return new JCustomGUI.modules.JFieldBuilder();
+  public JCustomGUI.modules.JInputBuilder JInputBuilder() {
+    return new JCustomGUI.modules.JInputBuilder();
   }
   public JCustomGUI.modules.JButtonCustom JButtonCustom() {
     return new JCustomGUI.modules.JButtonCustom();

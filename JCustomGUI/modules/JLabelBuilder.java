@@ -61,7 +61,7 @@ public class JLabelBuilder {
 
     if (!this.text.isEmpty() && this.x>=0 && this.y>=0) {
       FontMetrics metrics = label.getFontMetrics(label.getFont());
-      label.setBounds(this.x, this.y, metrics.stringWidth(this.text), metrics.getHeight());
+      label.setBounds(this.x, this.y, metrics.stringWidth(this.text) + 5, metrics.getHeight());
     }
 
     if (DEFAULT_BACKGROUND) {

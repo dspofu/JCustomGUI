@@ -17,12 +17,12 @@ public class Example extends Frame {
     .location(150, 5)
     .build();
 
-    JTextField inputName = new JFieldBuilder.Text()
+    JTextField inputName = new JInputBuilder.Text()
     .size(200, 30)
     .location(100, 60)
     .build();
   
-    JPasswordField inputPassword = new JFieldBuilder.Password()
+    JPasswordField inputPassword = new JInputBuilder.Password()
     .size(200, 30)
     .location(100, 110)
     .build();
