@@ -27,11 +27,10 @@ public class Example extends Frame {
     .location(100, 110)
     .build();
 
-    JTextArea area = new JInputBuilder.TextArea()
+    JComponent area = new JInputBuilder.TextArea()
     .size(200, 120)
-    .font(new Font(Font.SANS_SERIF, Font.BOLD, 10))
     .location(100, 200)
-    .scroll(true, true)
+    .scroll()
     .build();
 
     JPanel panel = new JPanelBuilder(4)
