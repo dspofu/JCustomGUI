@@ -5,9 +5,10 @@ import java.awt.*;
 
 public class JFrameBuilder {
   private JFrame frame = new JFrame();
-  private boolean DEFAULT_SIZE = false;
-  private boolean DEFAULT_RESIZABLE = false;
-  private boolean DEFAULT_OPERATION = false;
+  private boolean isSize = false;
+  private boolean isResizeble = false;
+  private boolean isOperation = false;
+  private boolean isVisible = false;
 
   public JFrameBuilder title(String title) {
     frame.setTitle(title);
@@ -16,19 +17,19 @@ public class JFrameBuilder {
 
   public JFrameBuilder size(int width, int height) {
     frame.setSize(width, height);
-    DEFAULT_SIZE = true;
+    isSize = true;
     return this;
   }
 
   public JFrameBuilder closeOperation(int operation) {
     frame.setDefaultCloseOperation(operation);
-    DEFAULT_OPERATION = true;
+    isOperation = true;
     return this;
   }
 
   public JFrameBuilder resizable(boolean resizable) {
     frame.setResizable(resizable);
-    DEFAULT_RESIZABLE = true;
+    isResizeble = true;
     return this;
   }
 
@@ -48,19 +49,26 @@ public class JFrameBuilder {
     return this;
   }
 
+  // public JFrameBuilder visible(boolean visible) {
+  //   frame.setVisible(visible);
+  //   isVisible = true;
+  //   return this;
+  // }
+
   public JFrameBuilder icon(String dir) {
     frame.setIconImage(new ImageIcon(System.getProperty("user.dir")+dir).getImage());
     return this;
   }
 
   public JFrame build() {
-    if (DEFAULT_SIZE == false)
+    if (isSize == false)
       try {
         throw new IllegalAccessException("The 'size' method was not called correctly!");
       } catch (IllegalAccessException e) { e.printStackTrace(); }
-    if (DEFAULT_OPERATION == false) frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setResizable(DEFAULT_RESIZABLE);
+    if (isOperation == false) frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setResizable(isResizeble);
     frame.setLayout(null);
+    // if (isVisible == false) frame.setVisible(true);
     return frame;
   }
 }

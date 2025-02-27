@@ -5,10 +5,10 @@ import java.awt.*;
 
 public class JLabelBuilder {
   private JLabel label = new JLabel();
-  private boolean DEFAULT_FONT = false;
-  private boolean DEFAULT_BACKGROUND = false;
+  private boolean isFont = false;
+  private boolean isBackground = false;
   private int DEFAULT_RADIUS;
-  private boolean DEFAULT_FOREGROUND = false;
+  private boolean isForeground = false;
   private String text;
   private int x;
   private int y;
@@ -22,7 +22,7 @@ public class JLabelBuilder {
   public JLabelBuilder background(Color color, Integer radius) {
     DEFAULT_RADIUS=(radius!=null && radius>=0)?radius:10;
     label.setBackground(color);
-    DEFAULT_BACKGROUND = true;
+    isBackground = true;
     return this;
   }
 
@@ -32,13 +32,13 @@ public class JLabelBuilder {
 
   public JLabelBuilder foreground(Color color) {
     label.setForeground(color);
-    DEFAULT_FOREGROUND = true;
+    isForeground = true;
     return this;
   }
 
   public JLabelBuilder font(Font font) {
     label.setFont(font);
-    DEFAULT_FONT = true;
+    isFont = true;
     return this;
   }
 
@@ -55,8 +55,8 @@ public class JLabelBuilder {
   }
 
   public JLabel build() {
-    if (!DEFAULT_FOREGROUND) label.setForeground(Color.BLACK);
-    if (!DEFAULT_FONT) label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
+    if (!isForeground) label.setForeground(Color.BLACK);
+    if (!isFont) label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
     label.setSize(label.getPreferredSize());
 
     if (!this.text.isEmpty() && this.x>=0 && this.y>=0) {
@@ -64,7 +64,7 @@ public class JLabelBuilder {
       label.setBounds(this.x, this.y, metrics.stringWidth(this.text) + 5, metrics.getHeight());
     }
 
-    if (DEFAULT_BACKGROUND) {
+    if (isBackground) {
       JLabel defaultLabel = label;
       label = new JLabel() {
         @Override

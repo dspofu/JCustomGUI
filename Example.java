@@ -27,6 +27,12 @@ public class Example extends Frame {
     .location(100, 110)
     .build();
 
+    JTextArea area = new JInputBuilder.TextArea()
+    .size(200, 120)
+    .font(new Font(Font.SANS_SERIF, Font.BOLD, 10))
+    .location(100, 200)
+    .scroll(true, true)
+    .build();
 
     JPanel panel = new JPanelBuilder(4)
     .build();
@@ -34,6 +40,7 @@ public class Example extends Frame {
     frame.add(text);
     frame.add(inputName);
     frame.add(inputPassword);
+    frame.add(area);
     frame.add(panel);
     frame.setVisible(true);
   }
