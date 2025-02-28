@@ -9,6 +9,8 @@ public class JLabelBuilder {
   private boolean isBackground = false;
   private int DEFAULT_RADIUS;
   private boolean isForeground = false;
+  private int paddingX = 0;
+  private int paddingY = 0;
   private String text;
   private int x;
   private int y;
@@ -19,15 +21,24 @@ public class JLabelBuilder {
     return this;
   }
 
-  public JLabelBuilder background(Color color, Integer radius) {
+  public JLabelBuilder padding(int x, int y) {
+    paddingX = x;
+    paddingY = y;
+    return this;
+  }
+  
+  public JLabelBuilder padding(int size) {
+    return padding(size, size);
+  }
+
+  public JLabelBuilder borderRadius(Integer radius) {
     DEFAULT_RADIUS=(radius!=null && radius>=0)?radius:10;
+    return this;
+  }
+  public JLabelBuilder background(Color color) {
     label.setBackground(color);
     isBackground = true;
     return this;
-  }
-
-  public JLabelBuilder background(Color color) {
-    return background(color, 10);
   }
 
   public JLabelBuilder foreground(Color color) {
@@ -58,12 +69,12 @@ public class JLabelBuilder {
     if (!isForeground) label.setForeground(Color.BLACK);
     if (!isFont) label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
     label.setSize(label.getPreferredSize());
-
-    if (!this.text.isEmpty() && this.x>=0 && this.y>=0) {
+  
+    if (!this.text.isEmpty() && this.x >= 0 && this.y >= 0) {
       FontMetrics metrics = label.getFontMetrics(label.getFont());
-      label.setBounds(this.x, this.y, metrics.stringWidth(this.text) + 5, metrics.getHeight());
+      label.setBounds(this.x - paddingX/2, this.y, metrics.stringWidth(this.text) + 2 + paddingX, metrics.getHeight()+paddingY);
     }
-
+    
     if (isBackground) {
       JLabel defaultLabel = label;
       label = new JLabel() {
@@ -83,6 +94,8 @@ public class JLabelBuilder {
       label.setForeground(defaultLabel.getForeground());
       label.setBackground(defaultLabel.getBackground());
       label.setBounds(defaultLabel.getBounds());
+      label.setHorizontalAlignment(SwingConstants.CENTER);
+      label.setVerticalAlignment(SwingConstants.CENTER);
     }
     return label;
   }

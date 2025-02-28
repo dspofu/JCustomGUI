@@ -13,12 +13,15 @@ public class Example extends Frame {
     .content("Login")
     .foreground(Color.GRAY)
     .font(new Font(Font.MONOSPACED, Font.BOLD, 30))
-    .background(Color.BLACK, 10)
+    .background(Color.BLACK)
+    .borderRadius(15)
+    .padding(10, 5)
     .location(150, 5)
     .build();
 
     JTextField inputName = new JInputBuilder.Text()
     .size(200, 30)
+    .font(new Font(Font.SANS_SERIF, Font.BOLD, 18))
     .location(100, 60)
     .build();
   
