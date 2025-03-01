@@ -14,9 +14,10 @@
 
 |Method|Type|Usage|Default|Required|
 |---|:---:|---|:---:|:---:|
-|__title__|String|"My Window title"|-|__[ x ]__|
+|__title__|`String`|"My Window title"|-|__[ x ]__|
+|__icon__|`String`|"/src/img/icon.png"|-|__[ x ]__|
 |__size__|int`x2`|(400, 200)|-|__[ ✓ ]__|
-|__background__|`Color`|(Color.GRAY)|white|__[ x ]__|
+|__background__|`Color`|(Color.GRAY)|WHITE|__[ x ]__|
 |__resizable__|boolean|(`true` or `false`)|false|__[ x ]__|
 |__location__|int`x2`|(50, 50)|-|__[ x ]__|
 |__closeOperation__|int|(JFrame.EXIT_ON_CLOSE)|3|__[ x ]__|
@@ -25,6 +26,7 @@
 ```java
 JFrame frame = new JFrameBuilder() // Chamando a classe personalizada
   .title("My Window") // Adicionado um nome a sua janela
+  .icon("/src/icons.png") // Adicionado um icone a sua janela
   .size(400, 600) // Tamanho da janela que vai ser criada
   .background(Color.darkGray) // Alterando a cor de fundo padrão
   .resizable(true) // Tornando a janela redimencionavel
@@ -39,11 +41,14 @@ frame.setVisible(true); // Exibir a janela
 
 |Method|Type|Usage|Default|Required|
 |---|:---:|:---|:---:|:---:|
-|__content__|String|"Some text"|-|__[ x ]__|
-|__background__|`Color`, `Integer` or `Color`|(Color.GRAY, 10) or (Color.GRAY)|10|__[ x ]__|
-|__foreground__|`Color`|(Color.GRAY)|gray|__[ x ]__|
-|__location__|int`x2`|(50, 50)|-|__[ ✓ ]__|
+|__content__|`String`|"Some text"|-|__[ x ]__|
+|__background__|`Color`|(Color.GRAY)|-|__[ x ]__|
+|__foreground__|`Color`|(Color.WHITE)|-|__[ x ]__|
+|__borderRadius__|`Integer`|(10) or (null)|10|__[ x ]__|
+|__padding__|int`x1 or 2`|(10, 10) or (10)|-|__[ x ]__|
 |__font__|`Font`, int|new Font(Font.SERIF, Font.BOLD, 30)|SANS_SERIF, Font.BOLD, 20|__[ x ]__|
+|__image__|`String`||-|__[ x ]__|
+|__location__|int`x2`|(50, 50)|-|__[ ✓ ]__|
 |__build__|void|( )|-|__[ ✓ ]__|
 
 ```java

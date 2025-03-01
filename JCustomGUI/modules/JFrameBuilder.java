@@ -8,7 +8,7 @@ public class JFrameBuilder {
   private boolean isSize = false;
   private boolean isResizeble = false;
   private boolean isOperation = false;
-  private boolean isVisible = false;
+  // private boolean isVisible = false;
 
   public JFrameBuilder title(String title) {
     frame.setTitle(title);
