@@ -18,6 +18,7 @@ public class Example extends Frame {
     
     JTextField inputName = new JInputBuilder.Text()
     .size(200, 30)
+    .font(new Font(Font.SANS_SERIF, Font.BOLD, 18))
     .location(100, 60)
     .font(new Font(Font.SANS_SERIF, Font.BOLD, 15))
     .build();
