@@ -13,15 +13,15 @@ public class Example extends Frame {
     .content("Login")
     .foreground(Color.GRAY)
     .font(new Font(Font.MONOSPACED, Font.BOLD, 30))
-    .background(Color.BLACK, 10)
     .location(150, 5)
     .build();
-
+    
     JTextField inputName = new JInputBuilder.Text()
     .size(200, 30)
     .location(100, 60)
+    .font(new Font(Font.SANS_SERIF, Font.BOLD, 15))
     .build();
-  
+
     JPasswordField inputPassword = new JInputBuilder.Password()
     .size(200, 30)
     .location(100, 110)
@@ -33,14 +33,14 @@ public class Example extends Frame {
     .scroll()
     .build();
 
-    JPanel panel = new JPanelBuilder(4)
-    .build();
+    // JPanel panel = new JPanelBuilder(4)
+    // .build();
 
     frame.add(text);
     frame.add(inputName);
     frame.add(inputPassword);
     frame.add(area);
-    frame.add(panel);
+    // frame.add(panel);
     frame.setVisible(true);
   }
 }
