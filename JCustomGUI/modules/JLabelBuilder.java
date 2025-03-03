@@ -35,6 +35,7 @@ public class JLabelBuilder {
     DEFAULT_RADIUS=(radius!=null && radius>=0)?radius:10;
     return this;
   }
+
   public JLabelBuilder background(Color color) {
     label.setBackground(color);
     isBackground = true;

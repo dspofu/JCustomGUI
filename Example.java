@@ -32,6 +32,7 @@ public class Example extends Frame {
     .size(200, 120)
     .location(100, 200)
     .scroll()
+    .borderRadius(40)
     .build();
 
     // JPanel panel = new JPanelBuilder(4)

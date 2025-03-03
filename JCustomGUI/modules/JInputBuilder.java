@@ -86,7 +86,7 @@ public class JInputBuilder {
       if (!isBackground) text.setBackground(Color.WHITE);
       if (!isForeground) text.setForeground(Color.GRAY);
       // if (!PLACEHOLDER.isEmpty()) OnFocusEventHelper.setOnFocusText();
-      text.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, false));
+      text.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
       return text;
     }
   }
@@ -136,7 +136,7 @@ public class JInputBuilder {
       if (!isBackground) password.setBackground(Color.WHITE);
       if (!isForeground) password.setForeground(Color.BLACK);
       // if (!PLACEHOLDER.isEmpty()) OnFocusEventHelper.setOnFocusText();
-      password.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, false));
+      password.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
       return password;
     }
   }
@@ -146,24 +146,24 @@ public class JInputBuilder {
     private JScrollPane scrollPane;
     private boolean isFont = false;
     private boolean isBackground = false;
-    // private int DEFAULT_RADIUS;
+    private int DEFAULT_RADIUS;
     private boolean isForeground = false;
     private boolean isScroll = false;
 
-    public TextArea background(Color color, Integer radius) {
-      // DEFAULT_RADIUS = (radius != null && radius >= 0) ? radius : 10;
+    public TextArea background(Color color) {
       textArea.setBackground(color);
       isBackground = true;
       return this;
     }
 
-    public TextArea background(Color color) {
-      return background(color, 10);
-    }
-
     public TextArea foreground(Color color) {
       textArea.setForeground(color);
       isForeground = true;
+      return this;
+    }
+
+    public TextArea borderRadius(Integer radius) {
+      DEFAULT_RADIUS=(radius!=null && radius>=0)?radius:10;
       return this;
     }
 
@@ -198,10 +198,32 @@ public class JInputBuilder {
     }
 
     public JComponent build() {
+      textArea.setBorder(BorderFactory.createEmptyBorder());
       if (!isFont) textArea.setFont(new Font(Font.SANS_SERIF, Font.BOLD, textArea.getHeight()<300&&textArea.getHeight()>20?15:textArea.getHeight()/30));
       if (!isBackground) textArea.setBackground(Color.WHITE);
       if (!isForeground) textArea.setForeground(Color.GRAY);
-      textArea.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, false));
+      textArea.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
+
+      if (DEFAULT_RADIUS>=0) {
+        JTextArea defaultArea = textArea;
+        textArea = new JTextArea() {
+          @Override
+          protected void paintComponent(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setColor(getBackground());
+            g2.fillRoundRect(0, 0, getWidth(), getHeight(), DEFAULT_RADIUS, DEFAULT_RADIUS);
+            g2.dispose();
+            super.paintComponent(g);
+          }
+        };
+        textArea.setOpaque(false);
+        textArea.setFont(defaultArea.getFont());
+        textArea.setForeground(defaultArea.getForeground());
+        textArea.setBackground(defaultArea.getBackground());
+        textArea.setBounds(defaultArea.getBounds());
+        if (isScroll) scrollPane.setViewportView(textArea);
+      }
       if (isScroll) return scrollPane;
       else return textArea;
     }
