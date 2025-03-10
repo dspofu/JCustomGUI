@@ -31,8 +31,16 @@ public class Example extends Frame {
     JComponent area = new JInputBuilder.TextArea()
     .size(200, 120)
     .location(100, 200)
-    .scroll()
-    .borderRadius(40)
+    .borderRadius(20)
+    .background(Color.decode("#D0F0F0"))
+    .scroll(true, true, true)
+    .build();
+
+    JButton button = new JButtonBuilder()
+    .location(160, 450)
+    .size(80, 50)
+    .text("Send")
+    .borderRadius(10)
     .build();
 
     // JPanel panel = new JPanelBuilder(4)
@@ -42,6 +50,7 @@ public class Example extends Frame {
     frame.add(inputName);
     frame.add(inputPassword);
     frame.add(area);
+    frame.add(button);
     // frame.add(panel);
     frame.setVisible(true);
   }

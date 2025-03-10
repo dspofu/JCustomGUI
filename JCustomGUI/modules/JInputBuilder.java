@@ -202,9 +202,14 @@ public class JInputBuilder {
       if (!isFont) textArea.setFont(new Font(Font.SANS_SERIF, Font.BOLD, textArea.getHeight()<300&&textArea.getHeight()>20?15:textArea.getHeight()/30));
       if (!isBackground) textArea.setBackground(Color.WHITE);
       if (!isForeground) textArea.setForeground(Color.GRAY);
+      if (!isScroll) {
+        textArea.setEditable(true);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+      }
       textArea.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
 
-      if (DEFAULT_RADIUS>=0) {
+      if (DEFAULT_RADIUS>0) {
         JTextArea defaultArea = textArea;
         textArea = new JTextArea() {
           @Override
@@ -217,12 +222,15 @@ public class JInputBuilder {
             super.paintComponent(g);
           }
         };
+        // scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
         textArea.setOpaque(false);
+        textArea.setLineWrap(defaultArea.getLineWrap());
+        textArea.setWrapStyleWord(defaultArea.getWrapStyleWord());
         textArea.setFont(defaultArea.getFont());
         textArea.setForeground(defaultArea.getForeground());
         textArea.setBackground(defaultArea.getBackground());
         textArea.setBounds(defaultArea.getBounds());
-        if (isScroll) scrollPane.setViewportView(textArea);
       }
       if (isScroll) return scrollPane;
       else return textArea;
