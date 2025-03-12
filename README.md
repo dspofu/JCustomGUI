@@ -2,7 +2,7 @@
 Manipulador das `classes` **awt** e **swing**.
 
 Objetivos:
-> Acelerar o processo de contrução de interfaces gráficas com o usa da classe personalizada `JCustom` e suas funcionalidades inclusas do `JCustomGUI.modules`
+> Acelerar o processo de contrução de interfaces gráficas com o uso de classe personalizada `JCustom` e suas funcionalidades inclusas do `JCustomGUI.modules`
 
 ### [- Guia completo dos metodos](JCustomGUI/README.md) 👈
 

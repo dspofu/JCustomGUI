@@ -61,11 +61,11 @@ public class JFrameBuilder {
   }
 
   public JFrame build() {
-    if (isSize == false)
+    if (!isSize)
       try {
         throw new IllegalAccessException("The 'size' method was not called correctly!");
       } catch (IllegalAccessException e) { e.printStackTrace(); }
-    if (isOperation == false) frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    if (!isOperation) frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setResizable(isResizeble);
     frame.setLayout(null);
     // if (isVisible == false) frame.setVisible(true);

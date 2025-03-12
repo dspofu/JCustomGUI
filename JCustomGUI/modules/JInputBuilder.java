@@ -198,17 +198,9 @@ public class JInputBuilder {
     }
 
     public JComponent build() {
-      textArea.setBorder(BorderFactory.createEmptyBorder());
       if (!isFont) textArea.setFont(new Font(Font.SANS_SERIF, Font.BOLD, textArea.getHeight()<300&&textArea.getHeight()>20?15:textArea.getHeight()/30));
       if (!isBackground) textArea.setBackground(Color.WHITE);
       if (!isForeground) textArea.setForeground(Color.GRAY);
-      if (!isScroll) {
-        textArea.setEditable(true);
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-      }
-      textArea.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
-
       if (DEFAULT_RADIUS>0) {
         JTextArea defaultArea = textArea;
         textArea = new JTextArea() {
@@ -222,8 +214,6 @@ public class JInputBuilder {
             super.paintComponent(g);
           }
         };
-        // scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
-        scrollPane.setBorder(BorderFactory.createEmptyBorder());
         textArea.setOpaque(false);
         textArea.setLineWrap(defaultArea.getLineWrap());
         textArea.setWrapStyleWord(defaultArea.getWrapStyleWord());
@@ -232,8 +222,20 @@ public class JInputBuilder {
         textArea.setBackground(defaultArea.getBackground());
         textArea.setBounds(defaultArea.getBounds());
       }
-      if (isScroll) return scrollPane;
-      else return textArea;
+
+      if (!isScroll) {
+        textArea.setEditable(true);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
+        if (DEFAULT_RADIUS>0) textArea.setBorder(BorderFactory.createEmptyBorder());
+        return textArea;
+      } else {
+        textArea.setBorder(BorderFactory.createEmptyBorder());
+        scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
+        scrollPane.setViewportView(textArea);
+        return scrollPane;
+      }
     }
   }
 }
